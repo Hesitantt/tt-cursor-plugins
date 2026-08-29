@@ -1,0 +1,17 @@
+{
+  "name": "tt-cursor-plugins",
+  "owner": {
+    "name": "Hesitantt"
+  },
+  "metadata": {
+    "description": "tt-cursor-plugins is a collection of plugins for Cursor.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "ttstack",
+      "source": "ttstack",
+      "description": "if you want to go fast, go deep first. ttstack helps you write less, but higher quality code. rigorous agent workflows you can parallelize with confidence. Copied and modified from poteto's pstack :)"
+    }
+  ]
+}
