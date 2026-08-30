@@ -11,7 +11,7 @@
     {
       "name": "ttstack",
       "source": "ttstack",
-      "description": "if you want to go fast, go deep first. ttstack helps you write less, but higher quality code. rigorous agent workflows you can parallelize with confidence. Copied and modified from poteto's pstack :)"
+      "description": "ttstack helps you write less, but higher quality code. agent toolsets that fit highly parallel working methods. Copied and modified from poteto's pstack. :)"
     }
   ]
 }
