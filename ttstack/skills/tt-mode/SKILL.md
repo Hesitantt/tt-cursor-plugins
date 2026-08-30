@@ -29,7 +29,8 @@ Remaining triggers:
 - Shipping UI / IDE / CLI → the matching control skill. `control-cli` for CLIs and TUIs and `control-ui` for browser / Electron / web UIs. For bug fixes, reproduce first on the same surface yourself; hand to the user only under the narrow Bug fix step 1 exception.
 - Broken skill mid-task → fix it in its own PR. Don't block. Don't silently work around it.
 - Any PR-status request → the **Babysit** playbook (`playbooks/babysit.md`), and not Cursor's built-in babysit skill, whose description matches the same words. That includes "babysit this", "get it green", "address the comments", and the commonest phrasing, "check on PR X" / "anything outstanding on X". Never triggered by merely opening a PR. Declare its mode before polling; the playbook's step 1 owns the request-to-mode mapping. Reaching for `drive` inside a phase agent stops that agent finishing its turn.
-- Create, stack, watch, comment on, or merge a PR → read `docs/code-host.md` first and use that host. If the file is missing, GitHub via `gh` per `references/code-hosts/github.md`. Recipes and the copy-me template live in `references/code-host.md`.
+- Create, stack, watch, comment on, or merge a PR → read `docs/code-host.md` first and use that host. If the file is missing, GitHub via `gh` per `references/code-hosts/github.md`. Map: `references/code-host.md`. Recipes: `references/code-hosts/`.
+- Create, update, comment on, or close a ticket, or after a placement/UX override → read `docs/issue-tracker.md` first. If the file is missing, still apply the Conventions in `references/issue-tracker-template.md` (the tracker does not freeze product chrome) but do not call a tracker MCP. Map: `references/issue-tracker.md`. Recipes: `references/issue-trackers/`.
 - Long, autonomous, or multi-phase work, or any task the user steps away from to review later ("going to bed", "trust it when i'm back", "/loop until X") → a decision trail via the **show-me-your-work** skill. Commit it when stakes need an auditable record; keep it local otherwise.
 
 ## Principles
@@ -118,7 +119,7 @@ A large or cross-cutting effort (a migration across many call sites, an ambitiou
 - **Trace forensics.** Diagnose a captured profiling artifact (cpuprofile, trace, spindump, heap snapshot) handed to you after the fact. The deliverable is a diagnosis, not a fix. `playbooks/trace-forensics.md`.
 - **Feature.** New or changed behavior, built from a named data shape. `playbooks/feature.md`.
 - **Refactoring.** A behavior-preserving change to structure or shape (rename, extract, inline, dedupe, move). `playbooks/refactoring.md`.
-- **Prototype.** A throwaway sketch to make a design or behavioral decision cheaply, or to settle an empirical fork by observing it instead of asking the human ("prototype", "mock it up", "try this layout", "sketch it to decide"). `playbooks/prototype.md`.
+- **Prototype.** Throwaway code that answers "does this state model feel right?" or "where should this control live / what should it look like?". Use for new product chrome, a placement fork, an explicit prototype request, or to settle an empirical fork by observing it instead of asking the human. Do not wait for the word "prototype". `playbooks/prototype.md`.
 - **Visual parity.** Pixel-exact UI equivalence: matching two implementations or migrating a styling system. `playbooks/visual-parity.md`.
 - **Authoring or modifying a skill.** Writing or editing a SKILL.md. `playbooks/authoring-a-skill.md`.
 - **Eval.** Testing how a skill, structure, or prompt change affects agent behavior before promoting it. `playbooks/eval.md`.

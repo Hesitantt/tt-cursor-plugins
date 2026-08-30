@@ -11,7 +11,7 @@ When a novel interaction or architectural decision has no established precedent,
 **The rule.** When the right answer is not obvious, build 2-3 competing prototypes or sketches. Compare them side by side. Only then commit. Design it twice is this rule by another name. A second flavor of the first shape does not count.
 
 **When it applies:**
-- Novel UI interactions (no prior art in the codebase)
+- Novel UI interactions (no prior art in the codebase), including chrome and placement even when types are already sketched
 - Architectural choices with multiple viable approaches
 - Product design decisions where user experience depends on feel, not logic
 
@@ -19,3 +19,4 @@ When a novel interaction or architectural decision has no established precedent,
 - Mechanical implementation where the pattern is established
 - Bug fixes or refactors with a clear target state
 - Changes where constraints dictate a single viable approach
+- A ticket that names one layout. That sentence is a hypothesis, not a constraint that exhausts the surface, until a human confirms placement.

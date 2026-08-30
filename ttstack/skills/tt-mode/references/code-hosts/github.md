@@ -19,13 +19,13 @@ CLI is `gh`. Do not switch to the GitHub MCP when `gh` already covers the job.
 
 ## Watcher
 
-`scripts/watch-pr/watch-pr` in the tt-mode skill directory (the folder that contains that skill's `SKILL.md`).
+`scripts/watch-pr/watch-pr` in the tt-mode skill directory (the folder that contains that skill's `SKILL.md`). After a plugin install that is under `~/.cursor/plugins/`. In this plugin repo it is `skills/tt-mode/`. Do not look in the app repo's `.cursor/skills/`. `watch-pr` is GitHub-only; an Azure repo must not call it.
 
 JSON by default. `--pretty` for humans. `--status-only` for babysit `check` mode. The bare command polls until a terminal verdict (`drive`). Rearm after every push wave. Trust `READY` / blocker class, not a green check list.
 
 ## Frontier
 
-`orch frontier set --repo <dir>` from the tt-mode skill directory (`bun scripts/orch/orch.ts frontier set --repo <dir>`). Walks GitHub `--base` chains. Recompute after every merge and retarget.
+`orch frontier set --repo <dir>` from the tt-mode skill directory (`bun scripts/orch/orch.ts frontier set --repo <dir>`). GitHub-only. Walks GitHub `--base` chains. Recompute after every merge and retarget.
 
 ## Stacks
 

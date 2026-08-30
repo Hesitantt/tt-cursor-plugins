@@ -32,7 +32,7 @@ Run the **arena** skill with the design-sketch task and the Phase A grounding ar
 
 In parallel mode, pass arena the `architect-runners` list from the User Rule titled `ttstack models`. If that rule or line is missing, run sequential.
 
-Design it twice. Require at least two structurally distinct candidates before synthesis, even when the first looks sufficient. This is the **exhaust-the-design-space** principle skill made concrete. Whole-shape alternatives, not point fixes inside one shape.
+Design it twice. Require at least two structurally distinct candidates before synthesis, even when the first looks sufficient. This is the **exhaust-the-design-space** principle skill made concrete. Whole-shape alternatives, not point fixes inside one shape. Placement and chrome count, not only types.
 
 Screen every candidate against [`references/design-red-flags.md`](references/design-red-flags.md) before synthesis. Reject or revise shallow modules, information leakage, temporal decomposition, and pass-through methods.
 
@@ -48,7 +48,7 @@ Opt in to a checkpoint when the invoker explicitly asks: "/architect with checkp
 
 The synthesis can ship as its own commit either way. That's the "scaffold first" mode of the **foundational-thinking** principle skill; subsequent commits read as filling in bodies against a stable contract. Planned and scoped breakage during fill-in is fine, per the **outcome-oriented-execution** principle skill. For adversarial pressure on the design before implementing, run the **interrogate** skill on the synthesized sketch.
 
-If the human pushes back on the shape (in a checkpoint or after the fact), treat that as Phase A evidence. Re-ground and re-run Phase B before writing more code.
+If the human pushes back on the shape (types, signatures, chrome, or placement) in a checkpoint or after the fact, treat that as Phase A evidence. Re-ground and re-run Phase B before writing more code. A settled type sketch does not freeze where a control lives. If the types still fit, re-run Phase B on placement only.
 
 ## Phase D: Implement against the sketch
 

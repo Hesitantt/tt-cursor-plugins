@@ -1,4 +1,4 @@
-# Linear Tickets
+# Issue / ticket tracker
 
 ## What this source contains
 
@@ -6,20 +6,22 @@
 - Project docs attached to issues (often PRDs or specs)
 - Parent/sub-issue relationships (broader initiative → specific tickets)
 - Comments on issues (clarifications, scope changes, "why we're doing this" rationale)
-- Labels (e.g., `compliance`, `customer-request`, `perf`) that signal the type of motivation
+- Labels that signal the type of motivation (compliance, customer-request, perf)
 - Status updates that explain scope changes
-- Attachments and linked GitHub PRs
+- Attachments and linked PRs
 
-Linear is where the product/business context often lives: the "we're doing this because customer X asked" or "this is for the Q3 compliance initiative" layer.
+This is where the product/business context often lives: the "we're doing this because customer X asked" or "this is for the Q3 compliance initiative" layer.
+
+Read `docs/issue-tracker.md` in the working repo first. That file names the tracker and the MCP tools. Do not assume Linear, Azure DevOps, or any other host.
 
 ## How to search it
 
-Use the Linear MCP.
+Use the Read and Search operations in `docs/issue-tracker.md`. If that file is missing, record the gap and do not call a tracker MCP.
 
-1. **Start with linked tickets.** If the seed commits or PRs reference ticket IDs (e.g., `ENG-1234`, `[BUG-567]`), fetch those first with `get_issue`. Read the full issue including comments.
-2. **List related issues by keyword.** Use `list_issues` with text search for the feature name, key symbol, or business term. Try multiple phrasings.
+1. **Start with linked tickets.** If the seed commits or PRs reference ticket IDs, fetch those first. Read the full issue including comments.
+2. **Search by keyword.** Query for the feature name, key symbol, or business term. Try multiple phrasings.
 3. **Walk the issue tree.** If you land on a sub-issue, fetch its parent. Sub-issues are tactical; parents often carry the "why."
-4. **Read project docs.** If the issue belongs to a project, use `get_project` and check attached docs. Project-level documents are where specs and rationale are most often captured.
+4. **Read project docs.** If the issue belongs to a project, check attached docs. Project-level documents are where specs and rationale are most often captured.
 5. **Check labels and milestones.** Labels hint at the category of motivation (customer-request, incident-followup, compliance). Milestones tie work to deadlines, which often reveal motivation.
 
 ## What good evidence looks like here
@@ -34,7 +36,7 @@ Use the Linear MCP.
 
 - **Scope drift.** The ticket the PR references may have been closed and reopened with a different scope. Read the whole history.
 - **Mechanical templates.** Some teams require "Why" sections but fill them with boilerplate. Generic text ("improve user experience") is probably not a real answer.
-- **Stale tickets.** Old tickets often reflect a version of the plan that changed. Check dates and cross-reference with the code's ship date.
+- **Stale tickets.** Old tickets often reflect a version of the plan that changed. Prefer a "Current decision" section or dated comments over the original description. Check dates and cross-reference with the code's ship date.
 - **Closed-as-duplicate chains.** Follow the duplicate-of relationships back to the canonical ticket.
 - **Private workspace content.** If you can't access an issue, note that as a gap rather than guessing.
 

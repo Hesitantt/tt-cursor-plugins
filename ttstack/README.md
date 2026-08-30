@@ -13,9 +13,9 @@ Run `[/setup-ttstack](skills/setup-ttstack/SKILL.md)`. It detects the models you
 
 Re-run the skill to change a role. Use `inherit-parent` or `auto` to keep a role on the parent chat model.
 
-The same run writes `docs/code-host.md` in the project you work in, if it is missing, from `[skills/tt-mode/references/code-host-template.md](skills/tt-mode/references/code-host-template.md)`.
+The same run writes `docs/code-host.md` and `docs/issue-tracker.md` in the project you work in, if they are missing, from `[skills/tt-mode/references/code-host-template.md](skills/tt-mode/references/code-host-template.md)` and `[skills/tt-mode/references/issue-tracker-template.md](skills/tt-mode/references/issue-tracker-template.md)`. It asks which provider to use and offers the recipes this plugin ships: GitHub or Azure DevOps for pull requests; Linear or Azure DevOps for tickets.
 
-GitHub needs `gh`. Azure DevOps needs the Azure DevOps MCP. Do not run `gh` on Azure DevOps. If `docs/code-host.md` is missing, agents use GitHub and `gh`.
+GitHub needs `gh`. Azure DevOps needs the Azure DevOps MCP. Linear needs the Linear MCP. Do not run `gh` on Azure DevOps. If `docs/code-host.md` is missing, agents use GitHub and `gh`. If `docs/issue-tracker.md` is missing, agents still treat tickets as not frozen chrome, but do not call a tracker MCP.
 
 ### Ground type-system-discipline
 
@@ -48,7 +48,7 @@ all skills
 | `[/arena](./skills/arena/SKILL.md)`                                             | you want N parallel attempts at the same thing, then to grab the best parts of each.                                                                                                                                                                              |
 | `[/swarm](./skills/swarm/SKILL.md)`                                             | you want N parallel workers across different slices or races, then one aggregated report.                                                                                                                                                                         |
 | `[/interrogate](./skills/interrogate/SKILL.md)`                                 | you have a diff and want several different models to try to break it, including a strict code-quality lens.                                                                                                                                                       |
-| `[/setup-ttstack](./skills/setup-ttstack/SKILL.md)`                             | you want to pick which models ttstack uses per role. detects your models and writes a config rule.                                                                                                                                                                |
+| `[/setup-ttstack](./skills/setup-ttstack/SKILL.md)`                             | you want to pick which models ttstack uses per role, or write the project's code-host and issue-tracker files. detects your models and writes a config rule.                                                                                                      |
 | `[/reflect](./skills/reflect/SKILL.md)`                                         | a long task landed and you want the recipe captured as a skill edit.                                                                                                                                                                                              |
 | `[/teach](./skills/teach/SKILL.md)`                                             | you want to actually understand a change or subsystem, not just have it summarized. runs how + why and weaves one plain explanation, built up diagram by diagram.                                                                                                 |
 | `[/tdd](./skills/tdd/SKILL.md)`                                                 | you're fixing a bug and there's a cheap local test path. write the failing test first, then the fix.                                                                                                                                                              |

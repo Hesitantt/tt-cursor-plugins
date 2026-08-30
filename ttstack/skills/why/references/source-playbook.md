@@ -5,7 +5,7 @@ The why skill spawns one investigator per available evidence category, each read
 | Category               | Playbook                                               | Example MCP it documents                                |
 | ---------------------- | ------------------------------------------------------ | ------------------------------------------------------- |
 | Source control history | [`code-archaeology.md`](./sources/code-archaeology.md) | git, `gh`                                               |
-| Issue / ticket tracker | [`linear.md`](./sources/linear.md)                     | Linear (adapt for Jira, GitHub Issues, Plane, Shortcut) |
+| Issue / ticket tracker | [`issue-tracker.md`](./sources/issue-tracker.md)       | Named by `docs/issue-tracker.md` in the working repo. |
 
 Cross-cutting:
 

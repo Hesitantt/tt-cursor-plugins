@@ -14,6 +14,8 @@ Verification is not a recap. It proves or disproves a specific claim with repeat
 - A UI, CLI, API, performance, or memory claim needs measurement.
 - A test passes but the user-visible behavior still needs confirmation.
 
+If you are about to write that a UI bug is fixed, run this skill first. A green unit test is a different surface than the user-visible repro. Only when the original bug was user-visible. A one-line copy fix does not need a full baseline/treatment artifact tree.
+
 Do not use this for vague claims like "the code is cleaner". Ask for a measurable claim first.
 
 ## Workflow

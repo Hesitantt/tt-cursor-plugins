@@ -2,7 +2,7 @@
 
 Not a separate source, a **cross-cutting angle**. Incidents often motivate defensive code ("we added this check after the X outage"), so if the target looks defensive (null checks, retry logic, timeout handling, rate limiting, feature flags), specifically hunt for incident history across every available source:
 
-- **Linear**: look for tickets labeled `incident`, `sev-*`, `postmortem-action-item`, `reliability`
+- **Issue tracker**: look for tickets labeled `incident`, `sev-*`, `postmortem-action-item`, `reliability` via the tools in `docs/issue-tracker.md`
 - **Git**: commits with messages like "fix for incident", "add defensive check", "revert" followed by "re-apply with..." are strong signals
 
 If you find an incident link, fetch the full postmortem. Postmortems typically have an "Action Items" section that ties directly to code changes. When multiple sources corroborate, the evidence is especially strong.

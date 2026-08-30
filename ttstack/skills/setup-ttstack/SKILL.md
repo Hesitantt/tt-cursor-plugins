@@ -1,6 +1,6 @@
 ---
 name: setup-ttstack
-description: Configure which models ttstack uses per role, and write the project's code-host file if it is missing. Detects your available models and writes an account User Rule that local and cloud agents both read. Use for /setup-ttstack, "configure ttstack models", or changing ttstack's model choices.
+description: Configure which models ttstack uses per role, and write the project's code-host and issue-tracker files if they are missing. Detects your available models and writes an account User Rule that local and cloud agents both read. Use for /setup-ttstack, "configure ttstack models", or changing ttstack's model choices.
 ---
 
 # Setup ttstack
@@ -71,10 +71,22 @@ After a successful write, delete `~/.cursor/rules/ttstack-models.mdc` if it exis
 
 Tell the user the User Rule was written, that it lives on this account (Customize → Rules), and that new local and cloud sessions on this account will see it. Re-running this skill updates the same rule.
 
-### 7. Project files
+### 7. Code host
 
-In the current workspace (the project the user is working in, not this plugin), create `docs/code-host.md` if it is missing. Do not overwrite a file that already exists. Copy `skills/tt-mode/references/code-host-template.md`, then fill it from this repo. GitHub or Azure DevOps. GitHub needs `gh`. Azure DevOps needs the Azure DevOps MCP. Do not run `gh` on Azure DevOps. Ask only what you cannot observe. If you cannot tell the host, default to GitHub and `gh`.
+In the current workspace (the project the user is working in, not this plugin), create `docs/code-host.md` if it is missing. Do not overwrite a file that already exists.
 
-### 8. Offer a verification skill (optional)
+If the file is missing, ask which pull-request host this repo uses. Prefer AskQuestion. Offer the recipes this plugin ships: GitHub (`gh`) or Azure DevOps (Azure DevOps MCP). Do not infer. Do not default. If they name a host this plugin does not ship, say so and stop rather than guessing.
+
+Copy `skills/tt-mode/references/code-host-template.md` to `docs/code-host.md`, then fill it for the chosen host. Do not run `gh` on Azure DevOps.
+
+### 8. Issue tracker
+
+In the current workspace (the project the user is working in, not this plugin), create `docs/issue-tracker.md` if it is missing. Do not overwrite a file that already exists.
+
+If the file is missing, ask which issue tracker this repo uses. Prefer AskQuestion. Offer the recipes this plugin ships: Linear (Linear MCP) or Azure DevOps (Azure DevOps MCP). Do not infer. Do not default. Code host and issue tracker are independent: GitHub PRs plus Linear tickets is a valid mix. If they name a tracker this plugin does not ship, say so and stop rather than guessing.
+
+Copy `skills/tt-mode/references/issue-tracker-template.md` to `docs/issue-tracker.md`, then fill it for the chosen tracker. Do not call Linear tools on a repo whose file names Azure DevOps.
+
+### 9. Offer a verification skill (optional)
 
 Check whether the project has a way to drive the real app for proof (a `verify-*` skill, or an existing harness). If not, offer once: "want a project-local verification skill, so agents can drive the app the way a user does and prove changes work? I can generate one with /create-verification-skill." On yes, invoke `/create-verification-skill`. On no, move on without pushing.

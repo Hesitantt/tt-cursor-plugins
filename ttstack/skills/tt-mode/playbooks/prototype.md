@@ -23,5 +23,5 @@ The two branches produce very different artifacts — getting this wrong wastes 
 
 ## When done
 
-Reply with the question, the variants, the evidence (screenshots for visual, observed output or timing for behavioral), tradeoffs, a recommendation, and the scratch path. Write that same verdict into a commit message, ADR, issue, or `NOTES.md` next to the prototype.
+Reply with the question, the variants, the evidence (screenshots for visual, observed output or timing for behavioral), tradeoffs, a recommendation, and the scratch path. Write that same verdict into a commit message, ADR, issue, or `NOTES.md` next to the prototype. If writing to an issue, follow `docs/issue-tracker.md`.
 That capture is a conversation unless the user granted full autonomy; then write it yourself, or leave a placeholder if the verdict still needs them.

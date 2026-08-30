@@ -137,7 +137,7 @@ Each entry lists what the category physically contains and the kind of "why" it 
 
 1. **Source control investigator**. Git history, `gh` for PRs, code comments, tests. Always spawn; the only guaranteed source. Best at surfacing _implementation-time rationale captured during review_. PR descriptions stating the problem, review threads debating alternatives, inline comments encoding non-obvious constraints, test names that encode motivating edge cases, and commit messages linking tickets or incidents. Most trustworthy because it ties directly to the diff that shipped.
 
-2. **Issue / ticket tracker investigator** (e.g. Linear, Jira, GitHub Issues, Plane, Shortcut MCP). Tickets, project docs, status updates, spec attachments. Best at surfacing _the product or business forcing function_. Customer requests ("Acme needs X for their SOC2 audit"), compliance deadlines, parent-initiative framing ("Q3 enterprise readiness"), ticket-level scope changes, and labels that categorize the motivation (`customer:*`, `incident-followup`, `compliance`, `perf-regression`). Strongest when the why is external to engineering.
+2. **Issue / ticket tracker investigator**. Read `docs/issue-tracker.md` in the working repo and use the tracker it names. Tickets, project docs, status updates, spec attachments. Best at surfacing _the product or business forcing function_. Customer requests ("Acme needs X for their SOC2 audit"), compliance deadlines, parent-initiative framing ("Q3 enterprise readiness"), ticket-level scope changes, and labels that categorize the motivation (`customer:*`, `incident-followup`, `compliance`, `perf-regression`). Strongest when the why is external to engineering.
 
 3. **Long-form documents investigator** (e.g. Notion, Confluence, Obsidian, Google Docs, Coda MCP). PRDs, specs, RFCs, design docs, ADRs, postmortems, team pages, meeting notes. Best at surfacing _long-form design rationale_. Problem statements, explicit "alternatives considered" and "rejected approaches" sections, strategy documents that set priorities, ADRs with finalized decisions, and postmortem action items that tie directly to code. Where the why is written out before it becomes code.
 
@@ -205,7 +205,7 @@ Format each line as: `- <Source>: <what was searched>. <what was found, or "no r
 Example:
 
 - Source control (git/gh): `git log --follow backend/retry.ts`, PRs #49074, #47812. Found PR #49074 introduced exponential backoff and linked ENG-4421.
-- Issue tracker (Linear): searched for "retry" and ENG-4421. Found ENG-4421 parent issue but no discussion of backoff parameters.
+- Issue tracker: searched for "retry" and ENG-4421. Found ENG-4421 parent issue but no discussion of backoff parameters.
 - Long-form docs (Notion): searched for "retry policy," "backend retries," "ENG-4421." No relevant results.
 - Real-time team chat (Slack): skipped. No matching MCP available in this environment. Gap: conversational record not searched.
 - Infrastructure observability (Datadog): searched for `retry_count` metric and monitors around 2024-08-14. Found monitor "Upstream 5xx rate > 1%" created same day as PR #49074.
@@ -229,5 +229,5 @@ After the Sources Consulted block, if the user's `why` question is a precursor t
 - `references/epistemics.md`. Confidence tiers and phrasing guide. The synthesizer must follow it.
 - `references/investigator-prompt.md`. Base prompt template for investigator subagents.
 - `references/source-playbook.md`. Index of committed category playbooks. Only those files exist on disk. Other MCP categories adapt the nearest example.
-- `references/sources/`. Committed examples: `code-archaeology.md`, `linear.md`, plus cross-cutting `incident-postmortem.md`.
+- `references/sources/`. Committed examples: `code-archaeology.md`, `issue-tracker.md`, plus cross-cutting `incident-postmortem.md`.
 - `references/synthesizer-prompt.md`. Prompt template for the synthesizer subagent, including the output format.
