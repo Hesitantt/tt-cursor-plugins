@@ -28,7 +28,7 @@ Only edit the verification skill's own directory (its SKILL.md, features/, and a
 
 1. **Index hygiene.** Read the feature map README and glob its sibling files. Fix missing, extra, duplicate, or dead entries. Lightweight; no generated inventory.
 
-2. **Source wave.** One `maintain-source-readers` child per feature file, launched concurrently. Spawn each with `subagent_type: generalPurpose`, `readonly: true`, and your configured `maintain-source-readers` model (default `inherit-parent`, omit Task `model`). Each explains "how does this user-facing feature work?" from source, flags likely doc drift with citations, and returns one concise live-verification recipe. Children never drive the app and never edit files. Return shape: feature summary / source entry points / likely drift or none / one recipe.
+2. **Source wave.** One `maintain-source-readers` child per feature file, launched concurrently. Spawn each with `subagent_type: generalPurpose`, `readonly: true`, and the `maintain-source-readers` line from the User Rule titled `ttstack models` (omit `model` if missing, `inherit-parent`, or `auto`). Each explains "how does this user-facing feature work?" from source, flags likely doc drift with citations, and returns one concise live-verification recipe. Children never drive the app and never edit files. Return shape: feature summary / source entry points / likely drift or none / one recipe.
 
 3. **Reconcile.** Every feature file has a returned summary. Merge overlapping recipes into as few app states as practical. Spot-check cited drift; don't re-prove clean claims. Sweep recent churn for user-facing surfaces missing from the map — require a concrete source path before calling one missing.
 

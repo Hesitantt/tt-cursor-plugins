@@ -27,7 +27,7 @@ Every candidate answers the same prompt, so the prompt is the contract. Get it r
 
 1. State the artifact each candidate is producing.
 2. Derive the rubric. State what success looks like for *this* task, then turn it into 3-6 concrete gradeable criteria. Concrete: `Adds a --dry-run flag that skips writes`. Vague: `code is correct`. The rubric is the picker's tool in Phase D; candidates only see the task.
-3. Pick the runners. Sequential mode: the inherited model for every candidate. Parallel mode: use `arena-runners` from `~/.cursor/rules/ttstack-models.mdc` when present, otherwise default to one each on `claude-fable-5-thinking-max`, `gpt-5.6-sol-max`, `grok-4.6-fast-xhigh`, `claude-opus-5-thinking-xhigh`; spawn more when the arena covers multiple design directions, or the same model N times when the work is generation-bound rather than judgment-sensitive.
+3. Pick the runners. Sequential mode: the inherited model for every candidate. Parallel mode: the `arena-runners` list from the User Rule titled `ttstack models`, one candidate per entry; spawn more when the arena covers multiple design directions, or the same model N times when the work is generation-bound rather than judgment-sensitive. If that rule or line is missing, run sequential instead.
 4. Assign output paths. Each candidate writes to its own location (a git worktree where possible, otherwise `/tmp/arena-<slug>/candidate-<n>/`). N candidates writing to the same path is shared mutable state and fails the **separate-before-serializing-shared-state** principle skill test.
 
 ## Phase B: Candidates
@@ -44,7 +44,7 @@ In both modes the rationale is mandatory. Without it, the picker cannot tell whe
 
 **Sequential.** Score the candidates against the rubric yourself, criterion by criterion, in Phase D. Spawn a single readonly judge subagent (one cheap/fast model, different family from your own) only when the pick is close or you suspect same-model bias — the judge is the escape hatch, not the default.
 
-**Parallel.** After all Phase B candidates complete, choose one model from the `arena-cross-judge-pool` in `~/.cursor/rules/ttstack-models.mdc` when present. Otherwise use `claude-fable-5-thinking-max`, `gpt-5.6-sol-max`, `grok-4.6-fast-xhigh`, `claude-opus-5-thinking-xhigh`. Prefer a different model family from the parent's. Spawn one readonly judge subagent on that model. It sees the rubric and the candidates by path label, scores each criterion, and recommends a base with rationale. It runs in parallel with the parent's reading in Phase D, not with the candidates themselves. Spawning while candidates are still writing means the judge sees partial or empty outputs and reports them as dropouts.
+**Parallel.** After all Phase B candidates complete, choose one model from the `arena-cross-judge-pool` list in the User Rule titled `ttstack models`. Prefer a different model family from the parent's. If that rule or line is missing, omit `model`. Spawn one readonly judge subagent on that model. It sees the rubric and the candidates by path label, scores each criterion, and recommends a base with rationale. It runs in parallel with the parent's reading in Phase D, not with the candidates themselves. Spawning while candidates are still writing means the judge sees partial or empty outputs and reports them as dropouts.
 
 ## Phase D: Pick a base
 

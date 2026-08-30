@@ -9,7 +9,7 @@ Add the [tt-cursor-plugins](../README.md) marketplace, then enable **ttstack**.
 
 ### Pick models and project files
 
-Run `[/setup-ttstack](skills/setup-ttstack/SKILL.md)`. It detects the models you can use and writes `~/.cursor/rules/ttstack-models.mdc`. That rule maps each role to a model. Skills read it and fall back to their defaults when a line is missing.
+Run `[/setup-ttstack](skills/setup-ttstack/SKILL.md)`. It detects the models you can use and writes a User Rule titled `ttstack models` on your Cursor account. That rule maps each role to a model. It applies to local Agent and to cloud agents started on the same account. Skills read it; a missing rule or line inherits the parent chat model.
 
 Re-run the skill to change a role. Use `inherit-parent` or `auto` to keep a role on the parent chat model.
 
