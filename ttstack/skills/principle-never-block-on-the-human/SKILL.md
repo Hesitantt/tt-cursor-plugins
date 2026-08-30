@@ -18,6 +18,6 @@ The human supervises asynchronously. Agents must stay unblocked: make reasonable
 - **Code is cheap, attention is scarce.** A wrong implementation costs minutes to fix. A blocked agent costs the human's attention to unblock.
 
 **Boundaries:**
-- **Irreversible actions** (force-push, delete production data, send external messages) still require confirmation.
-- **Reversible actions** (write code, edit notes, split tasks) should proceed without blocking.
+- **Irreversible actions** still require confirmation. Same list as tt-mode Autonomy. Force-push, deploys, data deletion, customer messages, and any database change. Schema and migration files in git count. Get user approval before editing them.
+- **Reversible actions** (write code that is not schema or migration, edit notes, split tasks) should proceed without blocking.
 - **Product direction** comes from the human; *execution* should not block.
