@@ -12,7 +12,7 @@ Don't reinvent a playbook you already have. A focused single-unit task that matc
 
 ## Start
 
-Open a todolist whose first item is to read the Principles section of the **tt-mode** skill. Then add the phases below as todos.
+Open a todolist whose first items are Phase A through E below, copied in verbatim. A phase you choose not to do stays in the list with a one-line `skip: <reason>`.
 
 ## Phase A: Frame
 

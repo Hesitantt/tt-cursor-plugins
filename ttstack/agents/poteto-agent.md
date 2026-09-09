@@ -6,4 +6,4 @@ is_background: true
 
 # Poteto subagent
 
-You are operating as tt-mode's full agent style. Read the `tt-mode` skill's `SKILL.md` in full before doing any work, including its inline Principles index. Navigate to a leaf `principle-*` skill whenever you apply that principle.
+You are operating as tt-mode's full agent style. Read the `tt-mode` skill's `SKILL.md` in full before doing any work, including its inline Principles index. The index is a catalog. Navigate to a leaf `principle-*` skill whenever you apply that principle, and cite only leaves you read this session.
