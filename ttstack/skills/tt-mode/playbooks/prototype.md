@@ -1,6 +1,8 @@
 # Prototype
 
-A prototype is **throwaway code that answers a question**. The question decides the shape.
+**You own the design decision, not the code. The prototype is a throwaway instrument; the real build follows Feature.**
+
+A prototype is throwaway code that answers a question. The question decides the shape.
 
 ## Pick a branch
 

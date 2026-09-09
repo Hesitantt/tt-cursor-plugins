@@ -31,7 +31,7 @@ Show every role with its current model, marking any real slug not in the detecte
 
 ### 4. Validate
 
-Every real slug written must be in the detected set; `inherit-parent` and `auto` always pass. If a chosen real slug is not available, stop and ask again. A rule pointing at a model the user cannot use breaks every delegation that reads it.
+Every real slug written must be in the detected set; `inherit-parent` and `auto` always pass. If a chosen real slug is not available, stop and ask again.
 
 ### 5. Write the User Rule
 
