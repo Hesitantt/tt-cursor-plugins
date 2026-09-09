@@ -49,19 +49,19 @@ refactoring: grok-4.6-fast-xhigh
 bug-fix: gpt-5.6-sol-max
 perf-issue: gpt-5.6-sol-max
 hillclimb: gpt-5.6-sol-max
-judgment-and-prose: claude-fable-5-thinking-max
+judgment-and-prose: claude-fable-5-1-thinking-max
 how-explorer: grok-4.6-fast-xhigh
-how-explainer: claude-fable-5-thinking-max
+how-explainer: claude-fable-5-1-thinking-max
 why-investigators: grok-4.6-fast-xhigh
-why-synthesizer: claude-fable-5-thinking-max
+why-synthesizer: claude-fable-5-1-thinking-max
 reflect-tooling: gpt-5.6-sol-max
-reflect-judgment: claude-fable-5-thinking-max
-arena-runners: claude-fable-5-thinking-max, gpt-5.6-sol-max, grok-4.6-fast-xhigh, claude-opus-5-thinking-xhigh
-arena-cross-judge-pool: claude-fable-5-thinking-max, gpt-5.6-sol-max, grok-4.6-fast-xhigh, claude-opus-5-thinking-xhigh
+reflect-judgment: claude-fable-5-1-thinking-max
+arena-runners: claude-fable-5-1-thinking-max, gpt-5.6-sol-max, grok-4.6-fast-xhigh, claude-opus-5-thinking-xhigh
+arena-cross-judge-pool: claude-fable-5-1-thinking-max, gpt-5.6-sol-max, grok-4.6-fast-xhigh, claude-opus-5-thinking-xhigh
 swarm-workers: grok-4.6-fast-xhigh
 maintain-source-readers: inherit-parent
-architect-runners: claude-fable-5-thinking-max, gpt-5.6-sol-max, grok-4.6-fast-xhigh, claude-opus-5-thinking-xhigh
-interrogate-reviewers: claude-fable-5-thinking-max, gpt-5.6-sol-max, grok-4.6-fast-xhigh, claude-opus-5-thinking-xhigh
+architect-runners: claude-fable-5-1-thinking-max, gpt-5.6-sol-max, grok-4.6-fast-xhigh, claude-opus-5-thinking-xhigh
+interrogate-reviewers: claude-fable-5-1-thinking-max, gpt-5.6-sol-max, grok-4.6-fast-xhigh, claude-opus-5-thinking-xhigh
 ```
 
 After a successful write, delete `~/.cursor/rules/ttstack-models.mdc` if it exists so a leftover file cannot compete.
