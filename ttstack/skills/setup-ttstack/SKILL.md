@@ -27,7 +27,7 @@ If more than one User Rule matches, keep the titled `ttstack models` rule and ig
 
 ### 3. Map and confirm
 
-Show every role with its current model, marking any real slug not in the detected set as needing a choice. Ask whether to accept as-is or change specific roles, offering the detected models plus `inherit-parent` and `auto` (both mean: this role runs on the parent chat model, which is how Auto users stay on Auto) as the options. Prefer AskQuestion over free text. For panel roles (`how-critics`, `arena-runners`, `architect-runners`, `interrogate-reviewers`) the value is a list, and one subagent runs per entry, alias entries included, so the list length sets the count. `arena-cross-judge-pool` is also a list, but Arena selects one value from it whose model family differs from the parent's when possible. `swarm-workers` is the default model for every worker unless a race or comparison assigns another model per arm. `maintain-source-readers` is the model for each `/maintain-verification-skill` source-wave child (seed `inherit-parent`). They are not `swarm-workers`. `judgment-and-prose` is the model for ad-hoc `/tt-mode` delegates that write prose or need judgment.
+Show every role with its current model, marking any real slug not in the detected set as needing a choice. Ask whether to accept as-is or change specific roles, offering the detected models plus `inherit-parent` and `auto` (both mean: this role runs on the parent chat model, which is how Auto users stay on Auto) as the options. Prefer AskQuestion over free text. For panel roles (`arena-runners`, `architect-runners`, `interrogate-reviewers`) the value is a list, and one subagent runs per entry, alias entries included, so the list length sets the count. `arena-cross-judge-pool` is also a list, but Arena selects one value from it whose model family differs from the parent's when possible. `swarm-workers` is the default model for every worker unless a race or comparison assigns another model per arm. `maintain-source-readers` is the model for each `/maintain-verification-skill` source-wave child (seed `inherit-parent`). They are not `swarm-workers`. `judgment-and-prose` is the model for ad-hoc `/tt-mode` delegates that write prose or need judgment.
 
 ### 4. Validate
 
@@ -52,7 +52,6 @@ hillclimb: gpt-5.6-sol-max
 judgment-and-prose: claude-fable-5-thinking-max
 how-explorer: grok-4.6-fast-xhigh
 how-explainer: claude-fable-5-thinking-max
-how-critics: claude-fable-5-thinking-max, gpt-5.6-sol-max, grok-4.6-fast-xhigh, claude-opus-5-thinking-xhigh
 why-investigators: grok-4.6-fast-xhigh
 why-synthesizer: claude-fable-5-thinking-max
 reflect-tooling: gpt-5.6-sol-max
