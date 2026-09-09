@@ -1,7 +1,7 @@
 {
   "name": "ttstack",
   "displayName": "ttstack",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "ttstack helps you write less, but higher quality code. agent toolsets that fit highly parallel working methods. Copied and modified from poteto's pstack. :)",
   "author": {
     "name": "Hesitantt"
