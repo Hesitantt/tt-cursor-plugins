@@ -128,7 +128,7 @@ Each live lane runs on its own cloud VM at the PR head. Drive through `control-u
 
 - [ ] Root's clean verdict at the exact head SHA.
 - [ ] Rebased onto current trunk after the verdict, patch-id unchanged.
-- [ ] <The merge rule from the execution playbook. Autopilot-full: the owner squash-merges. Autopilot-review: the operator merges bottom-up. Orchestrate: the stacker lands.>
+- [ ] <The merge rule from the execution playbook. Autopilot-full. The owner squash-merges. Autopilot-review. The operator merges bottom-up. Orchestrate. The stacker lands.>
 
 ## Close the program
 
