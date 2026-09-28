@@ -46,9 +46,9 @@ Do not write YAML frontmatter. User Rules are free-form text. Shape:
 # `inherit-parent` or `auto` as a value: the role runs on the parent chat model. Alias entries in a panel list still count toward its fan-out.
 feature: grok-4.7-high
 refactoring: grok-4.7-high
-bug-fix: claude-opus-5-5-high
-perf-issue: claude-opus-5-5-high
-hillclimb: claude-opus-5-5-high
+bug-fix: grok-4.7-high
+perf-issue: grok-4.7-high
+hillclimb: grok-4.7-high
 judgment-and-prose: claude-opus-5-5-high
 how-explorer: grok-4.7-high
 how-explainer: claude-opus-5-5-high
