@@ -44,24 +44,24 @@ Do not write YAML frontmatter. User Rules are free-form text. Shape:
 ```
 # ttstack model configuration. One line per role. Delete a line to inherit the parent chat model (omit Task `model`).
 # `inherit-parent` or `auto` as a value: the role runs on the parent chat model. Alias entries in a panel list still count toward its fan-out.
-feature: grok-4.6-fast-xhigh
-refactoring: grok-4.6-fast-xhigh
-bug-fix: gpt-5.6-sol-max
-perf-issue: gpt-5.6-sol-max
-hillclimb: gpt-5.6-sol-max
-judgment-and-prose: claude-fable-5-1-thinking-max
-how-explorer: grok-4.6-fast-xhigh
-how-explainer: claude-fable-5-1-thinking-max
-why-investigators: grok-4.6-fast-xhigh
-why-synthesizer: claude-fable-5-1-thinking-max
-reflect-tooling: gpt-5.6-sol-max
-reflect-judgment: claude-fable-5-1-thinking-max
-arena-runners: claude-fable-5-1-thinking-max, gpt-5.6-sol-max, grok-4.6-fast-xhigh, claude-opus-5-thinking-xhigh
-arena-cross-judge-pool: claude-fable-5-1-thinking-max, gpt-5.6-sol-max, grok-4.6-fast-xhigh, claude-opus-5-thinking-xhigh
-swarm-workers: grok-4.6-fast-xhigh
+feature: grok-4.7-high
+refactoring: grok-4.7-high
+bug-fix: claude-opus-5-5-high
+perf-issue: claude-opus-5-5-high
+hillclimb: claude-opus-5-5-high
+judgment-and-prose: claude-opus-5-5-high
+how-explorer: grok-4.7-high
+how-explainer: claude-opus-5-5-high
+why-investigators: grok-4.7-high
+why-synthesizer: claude-opus-5-5-high
+reflect-tooling: claude-opus-5-5-high
+reflect-judgment: claude-opus-5-5-high
+arena-runners: claude-opus-5-5-high, grok-4.7-high, claude-opus-5-thinking-xhigh
+arena-cross-judge-pool: claude-opus-5-5-high, grok-4.7-high, claude-opus-5-thinking-xhigh
+swarm-workers: grok-4.7-high
 maintain-source-readers: inherit-parent
-architect-runners: claude-fable-5-1-thinking-max, gpt-5.6-sol-max, grok-4.6-fast-xhigh, claude-opus-5-thinking-xhigh
-interrogate-reviewers: claude-fable-5-1-thinking-max, gpt-5.6-sol-max, grok-4.6-fast-xhigh, claude-opus-5-thinking-xhigh
+architect-runners: claude-opus-5-5-high, grok-4.7-high, claude-opus-5-thinking-xhigh
+interrogate-reviewers: claude-opus-5-5-high, grok-4.7-high, claude-opus-5-thinking-xhigh
 ```
 
 After a successful write, delete `~/.cursor/rules/ttstack-models.mdc` if it exists so a leftover file cannot compete.
