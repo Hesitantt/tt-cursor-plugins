@@ -1,6 +1,6 @@
 ---
 name: principle-prove-it-works
-description: "Apply after completing a task, before declaring done. Verify against the real artifact (run the feature, read the actual value, inspect the diff), not a proxy, self-report, or 'it compiles.'"
+description: "Apply after completing a task, before declaring done. Verify against the real artifact (run the feature, read the actual value, inspect the diff), not a proxy, self-report, a single happy path, or 'it compiles.'"
 disable-model-invocation: true
 ---
 
@@ -16,10 +16,11 @@ Check the real thing, not a proxy:
 - Check process liveness directly, not indirectly through derived state
 - Read the actual value, not a cached or derived representation
 - When verification fails, suspect the observation method before suspecting the system
+- A single passing path is a proxy for the feature. The feature is verified when its cases are
 
 Code and features:
 1. Build it (necessary but not sufficient)
-2. Run it and exercise the actual feature path
+2. Run it and exercise every path a user can reach: each entry point, empty and error states, bad input, interrupted flows. The happy path is one case, not the feature. Enumerate the cases with the **verify-this** skill
 3. Check the full chain: does data flow from input to output?
 4. For integrations, test the full communication path end-to-end
 
