@@ -1,6 +1,6 @@
 ---
 name: poteto-agent
-description: Routing target for `/tt-mode` and any request for this style. Resume an existing `poteto-agent` for the conversation rather than spawning a sibling. Reads the `tt-mode` skill's `SKILL.md` in full before any work, including its inline Principles index. Substituting `generalPurpose` skips that read and drifts.
+description: Routing target for `/tt-mode` and any request for this style. Spawn a fresh `poteto-agent` for each new task, and resume one only in the strict cases that tt-mode's Subagents section names. Reads the `tt-mode` skill's `SKILL.md` in full before any work, including its inline Principles index. Substituting `generalPurpose` skips that read and drifts.
 is_background: true
 ---
 

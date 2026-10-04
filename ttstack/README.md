@@ -50,8 +50,10 @@ all skills
 | `[/interrogate](./skills/interrogate/SKILL.md)`                                 | you have a diff and want several different models to try to break it, including a strict code-quality lens.                                                                                                                                                       |
 | `[/setup-ttstack](./skills/setup-ttstack/SKILL.md)`                             | you want to pick which models ttstack uses per role, or write the project's code-host and issue-tracker files. detects your models and writes a config rule.                                                                                                      |
 | `[/reflect](./skills/reflect/SKILL.md)`                                         | a long task landed and you want the recipe captured as a skill edit.                                                                                                                                                                                              |
+| `[/correct](./skills/correct/SKILL.md)`                                         | you keep correcting agents for the same mistakes. mines history for mistake classes, fixes each at the highest level that works, and keeps a table pairing each rule with what enforces it.                                                                       |
 | `[/teach](./skills/teach/SKILL.md)`                                             | you want to actually understand a change or subsystem, not just have it summarized. runs how + why and weaves one plain explanation, built up diagram by diagram.                                                                                                 |
 | `[/tdd](./skills/tdd/SKILL.md)`                                                 | you're fixing a bug and there's a cheap local test path. write the failing test first, then the fix.                                                                                                                                                              |
+| `[/benchmark-checklist](./skills/benchmark-checklist/SKILL.md)`                 | you ran a benchmark or measured a speedup or regression. vets the number before you report or act on it.                                                                                                                                                          |
 | `[/no-comments](./skills/no-comments/SKILL.md)`                                 | strip comments before review; spawns Comment Sicko, fixes accepted findings, offers encodings for claimed constraints.                                                                                                                                            |
 | `[/deslop](./skills/deslop/SKILL.md)`                                           | copied from [cursor-team-kit](https://github.com/cursor/plugins/tree/main/cursor-team-kit). strip AI slop from the diff before commit.                                                                                                                            |
 | `[/control-cli](./skills/control-cli/SKILL.md)`                                 | copied from [cursor-team-kit](https://github.com/cursor/plugins/tree/main/cursor-team-kit). drive a local CLI or TUI for proof.                                                                                                                                   |
@@ -91,12 +93,13 @@ all the examples
 | tdd               | `/tdd implement`                                                                                                                                                                 |
 | unslop            | `can we unslop and tighten the new changes?`                                                                                                                                     |
 | reflect           | `/reflect that took too long. capture what we learned so the next run doesn't repeat it.`                                                                                        |
+| correct           | `/correct`                                                                                                                                                                       |
 | show-me-your-work | `/show-me-your-work keep a decision trail i can review when i'm back.`                                                                                                           |
 | verify-this       | `/verify-this the list no longer jumps when a row is added.`                                                                                                                     |
 
 ## the `poteto-agent` and Comment Sicko subagents
 
-ttstack also ships a subagent that runs this style end to end. spawn it from a parent agent via `[subagent_type: "poteto-agent"](./agents/poteto-agent.md)`. it reads `tt-mode` in full, including its inline principles index, before doing any work. substituting `generalPurpose` skips that read and drifts.
+ttstack also ships a subagent that runs this style end to end. spawn a fresh `[subagent_type: "poteto-agent"](./agents/poteto-agent.md)` for each new task. resume one only in the cases the Subagents section of `[/tt-mode](./skills/tt-mode/SKILL.md)` names. it reads `tt-mode` in full, including its inline principles index, before doing any work. substituting `generalPurpose` skips that read and drifts.
 
 `[/tt-mode](./skills/tt-mode/SKILL.md)` and `[subagent_type: "poteto-agent"](./agents/poteto-agent.md)` route through the same wrapper.
 
@@ -104,10 +107,10 @@ ttstack also ships [Comment Sicko](./agents/comment-sicko.md), a read-only comme
 
 ## principles
 
-twenty-three short skills, one principle each. `tt-mode` indexes them inline. Cite a principle only after reading its leaf this session. the standalone files are there so other skills can reference a principle by name, and so the index can point at the full rule for each.
+twenty-four short skills, one principle each. `tt-mode` indexes them inline. Cite a principle only after reading its leaf this session. the standalone files are there so other skills can reference a principle by name, and so the index can point at the full rule for each.
 
 <details>
-<summary>all twenty-three principles</summary>
+<summary>all twenty-four principles</summary>
 
 | principle | group | rule |
 |---|---|---|
@@ -131,6 +134,7 @@ twenty-three short skills, one principle each. `tt-mode` indexes them inline. Ci
 | [fix-root-causes](./skills/principle-fix-root-causes/SKILL.md) | verification | Trace each symptom to its root cause and fix it there; reproduce first, ask why until you reach it, resist nil-check guards that silence crashes. |
 | [sequence-verifiable-units](./skills/principle-sequence-verifiable-units/SKILL.md) | verification | Apply to multi-step work (sweeps, migrations, runs of similar edits) and to how you stack commits and PRs. Break work into small units that each end in a verifiable state, check each before the next, and order delivery so the sequence proves itself to a reviewer. |
 | [test-behavior-not-implementation](./skills/principle-test-behavior-not-implementation/SKILL.md) | verification | Apply when you write, change, or keep a test. Call the code the way its users do and assert the result they observe against a literal expected value. If the test would still pass when every imported function returns undefined, rewrite the assertion or delete the test. |
+| [explain-the-number](./skills/principle-explain-the-number/SKILL.md) | verification | Apply before you trust, report, or act on a number you measured: a speedup, a regression, a throughput, a latency, or an eval result. Find what limits it, and rule out that it measured something other than the work you think. |
 | [guard-the-context-window](./skills/principle-guard-the-context-window/SKILL.md) | delegation | Route bulk to subagents; keep summaries in the main thread, not raw payloads. |
 | [never-block-on-the-human](./skills/principle-never-block-on-the-human/SKILL.md) | delegation | Proceed, present the result, let the human course-correct after the fact; reserve confirmation for irreversible actions. |
 | [encode-lessons-in-structure](./skills/principle-encode-lessons-in-structure/SKILL.md) | meta | Encode the rule as a lint, metadata flag, runtime check, or script instead of more text. |
