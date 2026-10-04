@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import fs from 'node:fs'
 import process from 'node:process'
+import { DIMENSIONS } from '../../verify-this/scripts/dimensions.mjs'
 
 const RULE =
 	'Tests alone are not sufficient verification. A PR is verified only when its unit, live, and perf boxes are all checked.'
@@ -37,6 +38,9 @@ const HOW_TO_READ_MARKERS = [
 	RULE,
 ]
 const PERF_ITEMS = ['Metric.', 'Probe.', 'Baseline.', 'Rule.']
+const LANE = /^Lane (\d+) \(([a-z0-9]+)(?::[^)]+)?\)\. /
+const MAX_HAPPY_LANES = 2
+const MIN_OTHER_DIMENSIONS = 4
 const BOX = /^\s*- \[[ x]\] (.*)$/
 
 const file = process.argv[2]
@@ -182,7 +186,7 @@ for (const pr of prSections) {
 			fail(live.n, `${pr.title}: Verify, live lacks "${LANES}"`)
 		const lanes = boxes(live.lines).map((b) => ({
 			...b,
-			m: b.text.match(/^Lane (\d+)\. /),
+			m: b.text.match(LANE),
 		}))
 		const numbers = lanes
 			.filter((b) => b.m)
@@ -193,8 +197,30 @@ for (const pr of prSections) {
 				live.n,
 				`${pr.title}: lanes are [${numbers.join(',')}], expected 1 to 10`,
 			)
+		const tags = lanes.filter((b) => b.m).map((b) => b.m[2])
+		const happy = tags.filter((t) => t === 'happy').length
+		if (happy > MAX_HAPPY_LANES)
+			fail(
+				live.n,
+				`${pr.title}: ${happy} happy lanes, at most ${MAX_HAPPY_LANES}`,
+			)
+		const others = new Set(tags.filter((t) => t !== 'happy'))
+		if (others.size < MIN_OTHER_DIMENSIONS)
+			fail(
+				live.n,
+				`${pr.title}: lanes span ${others.size} non-happy dimensions, at least ${MIN_OTHER_DIMENSIONS}`,
+			)
 		for (const lane of lanes) {
-			if (!lane.m) fail(lane.n, `${pr.title}: live box is not a lane`)
+			if (!lane.m)
+				fail(
+					lane.n,
+					`${pr.title}: live box is not a tagged lane, expected "Lane <n> (<dimension>). "`,
+				)
+			else if (!DIMENSIONS.includes(lane.m[2]))
+				fail(
+					lane.n,
+					`${pr.title}: lane ${lane.m[1]} dimension "${lane.m[2]}" is not one of ${DIMENSIONS.join(', ')}`,
+				)
 			else if (!/Save `[^`]+`/.test(lane.text))
 				fail(
 					lane.n,

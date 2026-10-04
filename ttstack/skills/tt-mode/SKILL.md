@@ -26,7 +26,7 @@ Remaining triggers:
 - Docs, RFCs, readmes, PR descriptions, or commit messages → the **technical-writing** skill (`/technical-writing`).
 - Before commit → the **deslop** skill (`/deslop`).
 - Before review → the **no-comments** skill (`/no-comments`).
-- Shipping UI / IDE / CLI → the matching control skill. `control-cli` for CLIs and TUIs and `control-ui` for browser / Electron / web UIs. For bug fixes, reproduce first on the same surface yourself; hand to the user only under the narrow Bug fix step 1 exception.
+- Shipping UI / IDE / CLI → the **verify-this** skill decides what to cover and the verdict, and the matching control skill drives each case. `control-cli` for CLIs and TUIs and `control-ui` for browser / Electron / web UIs. A UI change is verified only when its case matrix passes `check-matrix`. For bug fixes, reproduce first on the same surface yourself; hand to the user only under the narrow Bug fix step 1 exception.
 - Broken skill mid-task → fix it in its own PR. Don't block. Don't silently work around it.
 - Any PR-status request → the **Babysit** playbook (`playbooks/babysit.md`), and not Cursor's built-in babysit skill, whose description matches the same words. That includes "babysit this", "get it green", "address the comments", and the commonest phrasing, "check on PR X" / "anything outstanding on X". Never triggered by merely opening a PR. Declare its mode before polling; the playbook's step 1 owns the request-to-mode mapping. Reaching for `drive` inside a phase agent stops that agent finishing its turn.
 - Create, stack, watch, comment on, or merge a PR → read `docs/code-host.md` first and use that host. If the file is missing, GitHub via `gh` per `references/code-hosts/github.md`. Map: `references/code-host.md`. Recipes: `references/code-hosts/`.
@@ -60,7 +60,7 @@ Read the leaf skill in full for any principle you apply. Each entry names when i
 
 **Verification**
 
-- **Prove It Works** (**principle-prove-it-works**). After a task, before declaring done. Verify against the real artifact, not a proxy or "it compiles".
+- **Prove It Works** (**principle-prove-it-works**). After a task, before declaring done. Verify against the real artifact and its full case space, not a proxy, one happy path, or "it compiles".
 - **Fix Root Causes** (**principle-fix-root-causes**). Debugging. Trace each symptom to its root cause, reproduce first, ask why until you reach it.
 - **Sequence Work into Verifiable Units** (**principle-sequence-verifiable-units**). Multi-step work (sweeps, migrations, runs of similar edits) and how you stack commits and PRs. Break work into small units that each end in a check, verify each before the next, and order delivery so the sequence proves itself.
 - **Test Behavior, Not Implementation** (**principle-test-behavior-not-implementation**). Writing, changing, or keeping a test. Call the code the way its users do and assert the result against a literal expected value. If the test would still pass when every imported function returns `undefined`, rewrite the assertion or delete the test.

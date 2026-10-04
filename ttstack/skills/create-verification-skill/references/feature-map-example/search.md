@@ -8,6 +8,7 @@ Search lets a user find notes by title or body text, inspect a matching note, an
 - `search-match` returns title and body matches without changing note data.
 - `search-open-result` opens a result in the note editor.
 - `search-empty` shows a complete empty state for a query with no matches.
+- `search-unavailable` shows an error state, not the empty state, when the search request fails.
 - `search-clear` removes the query and restores the recent-notes view.
 - `search-cli` returns the same matching notes from the terminal.
 
@@ -31,6 +32,7 @@ Preconditions:
 - **Body match.** Replace the query with `budget`. Run `control-notes browser fill --role searchbox --name "Search notes" --value "budget"`. The result `Quarterly plan` remains visible with a body-match excerpt.
 - **Open result.** Choose `Quarterly plan`. Run `control-notes browser click --role link --name "Quarterly plan"`. The dialog closes and the editor heading reads `Quarterly plan`.
 - **Empty state.** Reopen search and enter `volcano`. Run `control-notes browser fill --role searchbox --name "Search notes" --value "volcano"`. A status named `No matching notes` appears after search completes.
+- **Search unavailable.** Make the search request fail, then query. Run `control-notes browser block --url "**/api/search" --status 503` and `control-notes browser fill --role searchbox --name "Search notes" --value "quarterly"`. An alert named `Search is unavailable` appears and no `No matching notes` status is shown. Run `control-notes browser unblock --url "**/api/search"` before the next step.
 - **Clear query.** Choose `Clear search`. Run `control-notes browser click --role button --name "Clear search"`. The searchbox is empty and the `Recent notes` region replaces the result list.
 - **CLI match.** Search from the terminal. Run `control-notes cli -- notes search "quarterly" --format json`. Exit code `0` and stdout contain one object whose title is `Quarterly plan`.
 - **CLI miss.** Search for an absent value. Run `control-notes cli -- notes search "volcano" --format json`. Exit code `0` and stdout are `[]`.
@@ -43,3 +45,4 @@ Preconditions:
 - Archived notes are excluded unless the user enables `Include archived`.
 - The CLI defaults to human-readable output. Use `--format json` for stable assertions.
 - Opening a result changes browser state. Reopen search before proving another query.
+- A blocked request stays blocked until `unblock`. Every later query reports unavailable if you skip it.
