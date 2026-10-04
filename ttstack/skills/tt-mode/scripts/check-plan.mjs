@@ -25,9 +25,9 @@ const PROGRAM_H3 = [
 	'Boot recipe',
 ]
 const PROGRAM_MARKERS = [
-	'/goal',
+	'Re-read this plan',
 	'git show origin/main:',
-	/30[- ]minute/,
+	'/loop 1h',
 	'status message',
 ]
 const HOW_TO_READ_MARKERS = [

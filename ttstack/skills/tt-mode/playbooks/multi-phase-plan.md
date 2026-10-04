@@ -32,15 +32,14 @@ Tests alone are not sufficient verification. A PR is verified only when its unit
 ### Arm the program
 
 - [ ] State the protocol and this plan to the operator, then stop. Start execution only on the operator's explicit go.
-- [ ] On the operator's go, arm a `/goal` with this exact text. "<The plan path, the PR ids in order, the verification rule, who merges, and the done condition.>"
 - [ ] Read these at program start. Re-read them at every tick. Plugin skills come from the installed ttstack plugin, not from this repo's `.cursor/skills/`.
     - [ ] tt-mode `playbooks/<execution playbook>.md`
     - [ ] the swarm skill
     - [ ] `git show origin/main:<control skill path>`
     - [ ] tt-mode `playbooks/opening-a-pr.md`
     - [ ] each other leaf skill the program uses
-- [ ] Arm the 30-minute audit tick as `/loop` in both local and cloud roots. Do not use a separate cloud sleeper. Never leave the cadence to memory.
-- [ ] Use this tick prompt, verbatim. "Re-read the execution playbook from the installed tt-mode skill and the armed /goal. Audit the operation against both and fix drift in this tick. Probe every active lane and judge progress by side effects only. Stand down a stuck lane and dispatch its replacement now. Then post a short status message to the operator in chat only when the audit found a tracked change that no earlier status message reported, such as a PR opened, a code-ready head, a round launched or closed, a verdict, a merge, a stuck agent and the action taken, a blocker added or cleared, or a decision only the operator can make. Name every such change and nothing else. Do not repeat a table, the merged list, or an unchanged blocker. If the audit found none, end the turn with no reply text. Either way, log this tick's row in your decision trail. The row names the items reported, or none."
+- [ ] On the operator's go, arm the audit tick as `/loop 1h` in both local and cloud roots. The loop prompt is the tick prompt below, with this plan's path, the PR ids in order, the verification rule, who merges, and the done condition filled in. Do not use a separate cloud sleeper. Never leave the cadence to memory.
+- [ ] Use this tick prompt, verbatim. "Re-read the execution playbook from the installed tt-mode skill. Re-read this plan at <plan path>. The done condition is <done condition>. Audit the operation against the playbook and the plan, and fix drift in this tick. Probe every active lane and judge progress by side effects only. Stand down a stuck lane and dispatch its replacement now. Then post a short status message to the operator in chat only when the audit found a tracked change that no earlier status message reported, such as a PR opened, a code-ready head, a round launched or closed, a verdict, a merge, a stuck agent and the action taken, a blocker added or cleared, or a decision only the operator can make. Name every such change and nothing else. Do not repeat a table, the merged list, or an unchanged blocker. If the audit found none, end the turn with no reply text. Either way, log this tick's row in your decision trail. The row names the items reported, or none."
 - [ ] On the operator's hold or stand-down, send every owner a zero-writes order at once.
 
 ### Spawn owners
