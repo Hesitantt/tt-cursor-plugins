@@ -27,6 +27,8 @@ If you write another typed language, add a skill in that same shape. Apply the p
 
 ## skills
 
+pick `/tt-mode` from the `/` menu before you type your task, so cursor attaches the skill to the message.
+
 `[/tt-mode](./skills/tt-mode/SKILL.md)` runs most of these for you when a step needs them (`how`, `why`, `architect`, `arena`, `swarm`, `interrogate`, `unslop`, `no-comments`, `technical-writing`, `tdd`, and the principles). the table below is for when you want one directly:
 
 ```
@@ -42,6 +44,7 @@ all skills
 | skill                                                                           | use it when                                                                                                                                                                                                                                                       |
 | ------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `[/tt-mode](./skills/tt-mode/SKILL.md)`                                         | default entry point for any non-trivial task.                                                                                                                                                                                                                     |
+| `[/in-your-own-words](./skills/in-your-own-words/SKILL.md)`                     | you want the agent to play back your goal and the problem before it starts.                                                                                                                                                                                       |
 | `[/how](./skills/how/SKILL.md)`                                                 | you want a walkthrough of how a subsystem works.                                                                                                                                                                                                                  |
 | `[/why](./skills/why/SKILL.md)`                                                 | you want to know why something was built this way. discovers available MCPs at run time and queries each evidence category in parallel (source control, issue tracker, long-form docs, real-time chat, infra observability, error tracking, analytics warehouse). |
 | `[/architect](./skills/architect/SKILL.md)`                                     | you're about to write code that crosses a function boundary and want the caller's usage, types, and module shape settled first.                                                                                                                                   |
@@ -100,11 +103,11 @@ all the examples
 
 ## the `poteto-agent` and Comment Sicko subagents
 
-ttstack also ships a subagent that runs this style end to end. spawn a fresh `[subagent_type: "poteto-agent"](./agents/poteto-agent.md)` for each new task. resume one only in the cases the Subagents section of `[/tt-mode](./skills/tt-mode/SKILL.md)` names. it reads `tt-mode` in full, including its inline principles index, before doing any work. substituting `generalPurpose` skips that read and drifts.
+`[/tt-mode](./skills/tt-mode/SKILL.md)` runs in the chat that receives it. that chat owns the playbook, the todo list, and every subagent spawn.
 
-`[/tt-mode](./skills/tt-mode/SKILL.md)` and `[subagent_type: "poteto-agent"](./agents/poteto-agent.md)` route through the same wrapper.
+ttstack also ships `[subagent_type: "poteto-agent"](./agents/poteto-agent.md)` as the wrapper for delegates spawned during a run. spawn a fresh one for each new task. resume one only in the cases the Subagents section of `[/tt-mode](./skills/tt-mode/SKILL.md)` names. it reads `tt-mode` in full, including its inline principles index, before doing any work. substituting `generalPurpose` skips that read and drifts. do not spawn `poteto-agent` to run the playbook itself.
 
-ttstack also ships [Comment Sicko](./agents/comment-sicko.md), a read-only comment reviewer available as `subagent_type: "Comment Sicko"`. usually invoke it through `[/no-comments](./skills/no-comments/SKILL.md)`, not directly.
+ttstack also ships [Comment Sicko](./agents/comment-sicko.md), a read-only comment reviewer available as `subagent_type: "comment-sicko"`. usually invoke it through `[/no-comments](./skills/no-comments/SKILL.md)`, not directly.
 
 ## principles
 

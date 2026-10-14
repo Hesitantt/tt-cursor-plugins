@@ -2,12 +2,13 @@
 name: tt-mode
 description: tt-mode working conventions. Terse replies, grill before code, surgical diffs, live UI proof. Use when the user runs /tt-mode, or asks to work in this style.
 disable-model-invocation: true
-mode: true
 icon: book-open
 color: red
 ---
 
 # tt-mode
+
+Bundled skills live at `../<name>/SKILL.md` from this file, so put this file's absolute path in every `poteto-agent` prompt.
 
 ## Non-negotiables
 
@@ -88,7 +89,7 @@ Read the leaf skill in full for any principle you apply. Each entry names when i
 
 ## Subagents
 
-**Use `subagent_type: "poteto-agent"` for any subagent you spawn inside a playbook step** (code-writing delegates, ad-hoc helpers). `/tt-mode` and `poteto-agent` route through the same wrapper. Routed workflow skills (`how`, `why`, `interrogate`, `reflect`, `swarm`, `maintain-verification-skill`) set their own `subagent_type` for diverse-model review; respect what the skill prescribes, don't override to `poteto-agent`.
+**Use `subagent_type: "poteto-agent"` for any subagent you spawn inside a playbook step** (code-writing delegates, ad-hoc helpers). The chat that receives `/tt-mode` runs the playbook. Never spawn a `poteto-agent` to run the playbook itself. Routed workflow skills (`how`, `why`, `interrogate`, `reflect`, `swarm`, `maintain-verification-skill`) set their own `subagent_type` for diverse-model review; respect what the skill prescribes, don't override to `poteto-agent`.
 
 **Defaults for every `Task` call.** `run_in_background: true`, agent mode (readonly strips MCP), file pointers not inlined context. Pass `model` from the User Rule titled `ttstack models` (already in this session). The lookup is `references/model-config.md`. Ad-hoc prose and judgment delegates use `judgment-and-prose`. Playbook code delegates use that playbook's role (`feature`, `refactoring`, `bug-fix`, `perf-issue`, `hillclimb`). When no playbook role fits, use `judgment-and-prose` if the task needs judgment or the intent is vague, and `bug-fix` when the work is a precisely specified sequence of steps; trivial mechanical edits use `feature`. Routed skills (`how`, `why`, `arena`, `swarm`, `architect`, `interrogate`, `reflect`, `maintain-verification-skill`) name their own roles. Omit Task `model` when the rule or line is missing, or the value is `inherit-parent` or `auto`.
 
