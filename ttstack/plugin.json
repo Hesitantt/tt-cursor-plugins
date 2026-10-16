@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "ttstack",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "ttstack helps you write less, but higher quality code. agent toolsets that fit highly parallel working methods. Copied and modified from poteto's pstack. :)",
   "author": {
     "name": "Hesitantt"
