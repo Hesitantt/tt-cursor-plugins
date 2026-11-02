@@ -53,9 +53,9 @@ Tests alone are not sufficient verification. A PR is verified only when its unit
 
 ### PR mechanics, for every PR
 
+- [ ] Run `/deslop` before each commit and `/no-comments` before each create-PR call.
 - [ ] Open the PR ready, never draft, with the create-PR command in `docs/code-host.md`. Stacked PRs target the parent branch.
 - [ ] Run the repo's lint and typecheck once before the PR-facing push. Push with hooks on.
-- [ ] Run `/deslop` before each commit and `/no-comments` before review.
 - [ ] Assess review comments on the merits. Do not treat a bot comment as a required change.
 - [ ] Rebase onto the parent branch, or onto trunk when the PR targets `main`, before the code-ready report and babysit. Keep that merge base in fix rounds. Rebase again only at merge prep, on a `git merge-tree` conflict with trunk, or on a CI failure that comes from a change on trunk.
 - [ ] Babysit to merge-ready per `playbooks/babysit.md`.

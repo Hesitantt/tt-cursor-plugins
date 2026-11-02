@@ -6,7 +6,7 @@ Invoked at the end of every other playbook.
 
 **Commits.** Commit liberally; rebase into small, ordered commits before opening PRs. Each commit is a future PR: landable, ordered to tell the story. Amend when the fix belongs in a just-made commit; new commit when separable.
 
-**PRs.** Run `/deslop` over the diff before commit. Run `/no-comments` before review. Write every PR title, PR description, and commit body with `/technical-writing`, then apply `/unslop`. Apply every technical-writing layer except Diátaxis. Use one word for each action, keep articles, and avoid `-ing` when a plain verb works.
+**PRs.** Run `/deslop` over the diff before commit. Run `/no-comments` over the final diff before every create-PR call, and commit its fixes into the commits they belong to. Never open the PR first and strip comments after. If `/no-comments` fails or reports open work, open the PR anyway and name that work under `## Scope`. Write every PR title, PR description, and commit body with `/technical-writing`, then apply `/unslop`. Apply every technical-writing layer except Diátaxis. Use one word for each action, keep articles, and avoid `-ing` when a plain verb works.
 
 **Titles.** Use Conventional Commits in the form `type(scope): subject`. Use `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, or `perf` as the type. Use the changed area, such as `drafts` or `tt-mode`, as the scope. Keep the subject short and imperative. Apply the same `/technical-writing` and `/unslop` pass as the body. Name a real symbol when one carries the change. For example, `fix(tt-mode): retarget opening-a-pr babysit trigger`. Do not add a trailing period.
 
@@ -29,4 +29,4 @@ After these sections, attach videos or screenshots when they prove a claim. Do n
 
 **Babysit.** Opening a PR does not start a babysit. Post the URL and keep building. Finish the phase or stack first. Run a separate babysit pass only when the user asks for one after the whole stack exists. A babysit for each new PR stalls the build and spends checks on commits that later waves restart. Push back when feedback drifts from intent.
 
-A subagent that opens a PR runs `interrogate`, `/deslop`, and `/no-comments`. It returns the URL and does not babysit, unless it is an Autopilot-full or Autopilot-review owner. That owner's brief assigns the babysit loop and is the ask `playbooks/babysit.md` waits for. Return to the parent.
+A subagent that opens a PR runs `interrogate`, `/deslop`, and `/no-comments` before the create-PR call. It returns the URL and does not babysit, unless it is an Autopilot-full or Autopilot-review owner. That owner's brief assigns the babysit loop and is the ask `playbooks/babysit.md` waits for. Return to the parent.

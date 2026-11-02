@@ -26,7 +26,7 @@ Remaining triggers:
 - Any prose surface, your reply to the user included → the **unslop** skill. Write the reply per **Writing the reply**. Agent-facing prose also follows the **create-skill** skill (Cursor's built-in for authoring SKILL.md files).
 - Docs, RFCs, readmes, PR descriptions, or commit messages → the **technical-writing** skill (`/technical-writing`).
 - Before commit → the **deslop** skill (`/deslop`).
-- Before review → the **no-comments** skill (`/no-comments`).
+- Before every create-PR call, and before any other review → the **no-comments** skill (`/no-comments`).
 - Shipping UI / IDE / CLI → the **verify-this** skill decides what to cover and the verdict, and the matching control skill drives each case. `control-cli` for CLIs and TUIs and `control-ui` for browser / Electron / web UIs. A UI change is verified only when its case matrix passes `check-matrix`. For bug fixes, reproduce first on the same surface yourself; hand to the user only under the narrow Bug fix step 1 exception.
 - Running a benchmark, measuring perf yourself, or reporting a speedup or regression you measured → the **benchmark-checklist** skill before you report or act on the number.
 - Broken skill mid-task → fix it in its own PR. Don't block. Don't silently work around it.
