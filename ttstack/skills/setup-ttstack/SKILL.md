@@ -25,11 +25,11 @@ The seed role-to-model mapping is the rule shape shown in step 5 below. Load cur
 
 If more than one User Rule matches, keep the titled `ttstack models` rule and ignore the extras. Do not add a second copy.
 
-A line whose role is not in the seed in step 5, such as `how-critics`, is from a retired role. Drop it.
+A line whose role is not in the seed in step 5, such as `how-critics`, is from a retired role. Drop it. A seed role with no line in the loaded rule, such as `comment-sicko` in a rule written before that role existed, takes its seed value. Mark it new in step 3.
 
 ### 3. Map and confirm
 
-Show every role with its current model, marking any real slug not in the detected set as needing a choice. Also list each line step 2 dropped. Ask whether to accept as-is or change specific roles, offering the detected models plus `inherit-parent` and `auto` (both mean: this role runs on the parent chat model, which is how Auto users stay on Auto) as the options. Prefer AskQuestion over free text. For panel roles (`arena-runners`, `architect-runners`, `interrogate-reviewers`) the value is a list, and one subagent runs per entry, alias entries included, so the list length sets the count. `arena-cross-judge-pool` is also a list, but Arena selects one value from it whose model family differs from the parent's when possible. `swarm-workers` is the default model for every worker unless a race or comparison assigns another model per arm. `maintain-source-readers` is the model for each `/maintain-verification-skill` source-wave child (seed `inherit-parent`). They are not `swarm-workers`. `judgment-and-prose` is the model for ad-hoc `/tt-mode` delegates that write prose or need judgment.
+Show every role with its current model, marking any real slug not in the detected set as needing a choice. Also list each line step 2 dropped. Ask whether to accept as-is or change specific roles, offering the detected models plus `inherit-parent` and `auto` (both mean: this role runs on the parent chat model, which is how Auto users stay on Auto) as the options. Prefer AskQuestion over free text. For panel roles (`arena-runners`, `architect-runners`, `interrogate-reviewers`) the value is a list, and one subagent runs per entry, alias entries included, so the list length sets the count. `arena-cross-judge-pool` is also a list, but Arena selects one value from it whose model family differs from the parent's when possible. `swarm-workers` is the default model for every worker unless a race or comparison assigns another model per arm. `maintain-source-readers` is the model for each `/maintain-verification-skill` source-wave child (seed `inherit-parent`). They are not `swarm-workers`. `judgment-and-prose` is the model for ad-hoc `/tt-mode` delegates that write prose or need judgment. `comment-sicko` is the model for the Comment Sicko reviewer that `/no-comments` spawns.
 
 ### 4. Validate
 
@@ -64,6 +64,7 @@ swarm-workers: grok-4.7-high
 maintain-source-readers: inherit-parent
 architect-runners: claude-opus-5-5-high, grok-4.7-high
 interrogate-reviewers: claude-opus-5-5-high, grok-4.7-high
+comment-sicko: grok-4.7-high
 ```
 
 After a successful write, delete `~/.cursor/rules/ttstack-models.mdc` if it exists so a leftover file cannot compete.
