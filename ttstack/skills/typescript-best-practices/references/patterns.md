@@ -354,7 +354,7 @@ export function createGitHubReader({ gh }: { gh: GhCli }): GitHubReader {
 }
 ```
 
-Use a class for `Error` subtypes, so callers can catch by type. Also use one when the platform requires it (`extends HTMLElement`), when a framework's dependency injection needs it (Angular, NestJS), or for many instances of a stateful object, since methods live once on the prototype.
+Use a class for `Error` subtypes, so callers can catch by type. Also use one when the platform or a framework requires it, such as for custom elements or decorator-based dependency injection, or for many instances of a stateful object, since methods live once on the prototype.
 
 ```ts
 export class NotFoundError extends Error {
@@ -364,9 +364,9 @@ export class NotFoundError extends Error {
 
 What a class costs:
 
-- **`this` binding.** `button.addEventListener("click", cart.checkout)` runs `checkout` with `this` undefined. Closures have no `this` to lose.
+- **`this` binding.** `items.forEach(cart.add)` runs `add` with `this` undefined. Closures have no `this` to lose.
 - **Boundaries drop the prototype.** JSON, `structuredClone`, `postMessage`, SSR hydration, and persisted store state return plain objects. After a JSON round-trip, `instanceof` is `false` and every method is `undefined`.
-- **`#private` breaks under a Proxy.** Vue's `reactive(new X())` throws `TypeError: Cannot read private member #n from an object whose class did not declare it` when a method touches `#n`. TypeScript `private` survives, because it is erased at compile time.
+- **`#private` breaks under a Proxy.** A method called through a `Proxy` gets the proxy as `this`, so touching `#n` throws `TypeError: Cannot read private member #n from an object whose class did not declare it`. Any library that wraps state in proxies hits this. TypeScript `private` survives, because it is erased at compile time.
 - **Private members make the type nominal.** A consumer typed against `GhGitHubReader` rejects an object-literal fake. Type the consumer against the interface.
 - **No tree-shaking of methods.** Bundlers drop unused module-level functions, never unused methods.
 
