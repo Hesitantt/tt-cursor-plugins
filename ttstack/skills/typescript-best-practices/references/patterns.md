@@ -315,3 +315,59 @@ openFile({
 ```
 
 Skip on hot paths: per-frame render, tokenizers, parsers, anything in a tight loop where the allocation cost matters.
+
+## Functions over classes
+
+```ts
+// Do. Plain data and module-level functions over it.
+type Cart = { readonly items: readonly LineItem[] };
+
+export function addItem(cart: Cart, item: LineItem): Cart {
+  return { items: [...cart.items, item] };
+}
+
+export function itemCount(cart: Cart): number {
+  return cart.items.length;
+}
+```
+
+A factory returning twenty closures is the same actor as a class with twenty methods. Split by the data each function transforms, not by noun.
+
+Use a factory when a few long-lived objects need captured dependencies or private state. Return the interface, so consumers never see the implementation.
+
+```ts
+export interface GitHubReader {
+  pullRequest(id: PrId): Promise<PullRequest>;
+}
+
+export function createGitHubReader({ gh }: { gh: GhCli }): GitHubReader {
+  const cache = new Map<PrId, PullRequest>();
+  return {
+    async pullRequest(id) {
+      const hit = cache.get(id);
+      if (hit) return hit;
+      const pr = await gh.viewPullRequest(id);
+      cache.set(id, pr);
+      return pr;
+    },
+  };
+}
+```
+
+Use a class for `Error` subtypes, so callers can catch by type. Also use one when the platform requires it (`extends HTMLElement`), when a framework's dependency injection needs it (Angular, NestJS), or for many instances of a stateful object, since methods live once on the prototype.
+
+```ts
+export class NotFoundError extends Error {
+  override name = "NotFoundError";
+}
+```
+
+What a class costs:
+
+- **`this` binding.** `button.addEventListener("click", cart.checkout)` runs `checkout` with `this` undefined. Closures have no `this` to lose.
+- **Boundaries drop the prototype.** JSON, `structuredClone`, `postMessage`, SSR hydration, and persisted store state return plain objects. After a JSON round-trip, `instanceof` is `false` and every method is `undefined`.
+- **`#private` breaks under a Proxy.** Vue's `reactive(new X())` throws `TypeError: Cannot read private member #n from an object whose class did not declare it` when a method touches `#n`. TypeScript `private` survives, because it is erased at compile time.
+- **Private members make the type nominal.** A consumer typed against `GhGitHubReader` rejects an object-literal fake. Type the consumer against the interface.
+- **No tree-shaking of methods.** Bundlers drop unused module-level functions, never unused methods.
+
+What a factory costs: every object gets its own copy of every closure. 1M objects with 1 field and 5 methods take 400 MB as factory objects, and 40 MB as class instances or as plain data with module-level functions (Node 22). A factory suits a few long-lived objects, never many.
