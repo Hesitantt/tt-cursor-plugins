@@ -5,7 +5,18 @@
 
 ### Install
 
-Add the [tt-cursor-plugins](../README.md) marketplace, then enable **ttstack**.
+In Cursor, add the [tt-cursor-plugins](https://github.com/Hesitantt/tt-cursor-plugins) marketplace, then enable **ttstack**.
+
+In Claude Code:
+
+```bash
+/plugin marketplace add Hesitantt/tt-cursor-plugins
+/plugin install ttstack@tt-cursor-plugins
+```
+
+Claude Code prefixes plugin skills and agents, so `/tt-mode` is `/ttstack:tt-mode` there. The [Claude Code adapter](docs/harness/claude-code.md) maps every other Cursor name. In Claude Code, `/ttstack:setup-ttstack` writes your model choices to `~/.claude/rules/ttstack-models.md`, every role runs on a Claude model, and a step that needs a Cursor-only feature, such as Bugbot or cloud agents, is skipped with a one-line note.
+
+Claude Code installs a generated copy of ttstack from [`harness/ttstack/claude-code/`](https://github.com/Hesitantt/tt-cursor-plugins/tree/main/harness/ttstack). After you change ttstack, run `node scripts/generate-ttstack-harness-trees.mjs` from the repository root and commit the result. CI fails while the generated copy is out of date.
 
 ### Pick models and project files
 

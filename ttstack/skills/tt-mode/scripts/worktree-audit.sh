@@ -69,9 +69,11 @@ elif raw=$(gh pr list --author "@me" --state all --limit 1000 \
 fi
 [ -s "$prs" ] || echo "[]" > "$prs"
 
-# Transcripts dir: ~/.cursor/projects/<slugified-repo-path>/agent-transcripts.
+# Cursor keeps transcripts in ~/.cursor/projects/<slug>/agent-transcripts, Claude Code in ~/.claude/projects/<slug>.
 slug=$(printf '%s' "$main_wt" | sed 's#^/##; s#/#-#g')
 transcripts="$HOME/.cursor/projects/$slug/agent-transcripts"
+claude_transcripts="$HOME/.claude/projects/$(printf '%s' "$main_wt" | sed 's#[/.]#-#g')"
+[ -d "$transcripts" ] || transcripts="$claude_transcripts"
 now=$(date +%s)
 
 echo "# base: $base"
