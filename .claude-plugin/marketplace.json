@@ -1,0 +1,16 @@
+{
+  "name": "tt-cursor-plugins",
+  "owner": {
+    "name": "Hesitantt"
+  },
+  "metadata": {
+    "description": "tt-cursor-plugins is a collection of plugins for Cursor and Claude Code."
+  },
+  "plugins": [
+    {
+      "name": "ttstack",
+      "source": "./harness/ttstack/claude-code",
+      "description": "ttstack helps you write less, but higher quality code. agent toolsets that fit highly parallel working methods. Copied and modified from poteto's pstack. :)"
+    }
+  ]
+}

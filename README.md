@@ -8,6 +8,8 @@ To load a local clone instead, use **From Local Repository** and pick this folde
 
 Then enable the plugins you want.
 
+In Claude Code, run `/plugin marketplace add Hesitantt/tt-cursor-plugins`, then `/plugin install ttstack@tt-cursor-plugins`. Claude Code installs a generated copy from [`harness/`](harness/). See the [ttstack readme](ttstack/README.md) for the differences.
+
 ## plugins
 
 | plugin                       | description                                                                                                                                                                                                        |
